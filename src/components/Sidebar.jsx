@@ -1,50 +1,35 @@
 import { Link, useLocation } from "react-router-dom";
 import { 
   FiHome, 
-  FiDatabase, 
   FiChevronDown, 
   FiChevronLeft, 
   FiChevronRight, 
   FiX,
   FiUsers,
-  FiUserCheck,
-  FiGrid,
-  FiMapPin,
-  FiBriefcase,
-  FiDollarSign,
-  FiCreditCard,
-  FiFileText,
+  FiDatabase
 } from "react-icons/fi";
-import { BsHandIndexThumb } from "react-icons/bs";
+import { FaDownload, FaRegFileAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useThemeStore } from '../store/themeStore';
 import { useState } from 'react';
-import logo from './../assets/logo/EMS-Logo-1.png';
-import logoLight from './../assets/logo/EMS-Light.png';
-import CUPL from './../assets/logo/CUPL-Logo.png';
+import { IoCloudUploadOutline } from "react-icons/io5";
 const Sidebar = ({ onClose, isMobile, isCollapsed, onCollapse }) => {
   const location = useLocation();
   const theme = useThemeStore((state) => state.theme);
   const [expandedItems, setExpandedItems] = useState([]);
 
   const menuItems = [
-    { path: "/dashboard", icon: <FiHome className="w-6 h-6" />, label: "Dashboard" },
+    { path: "/dashboard", icon: < FaRegFileAlt   className="w-6 h-6" />, label: "Dashboard" },
+    { path: "/download-file", icon: < FaDownload  className="w-6 h-6" />, label: "Download File" },
+    { path: "/upload-file", icon: < IoCloudUploadOutline  className="w-6 h-6" />, label: "Upload File" },
     {
       path: "/masters",
       icon: <FiDatabase className="w-6 h-6" />,
       label: "Masters",
       subItems: [
-        { path: "/masters/employee/view", icon: <FiUsers className="w-4 h-4" />, label: "Employees" },
-        { path: "/masters/roles", icon: <FiUserCheck className="w-4 h-4" />, label: "Roles" },
-        { path: "/masters/departments", icon: <FiGrid className="w-4 h-4" />, label: "Departments" },
-        { path: "/masters/locations", icon: <FiMapPin className="w-4 h-4" />, label: "Locations" },
-        { path: "/masters/designations", icon: <FiBriefcase className="w-4 h-4" />, label: "Designations" },
-        { path: "/masters/banks", icon: <FiDollarSign className="w-4 h-4" />, label: "Banks" },
+        { path: "/add-user", icon: <FiUsers className="w-4 h-4" />, label: "Add Users" },
       ]
     },
-    { path: "/payrolls", icon: <FiFileText className="w-6 h-6" />, label: "Payrolls" },
-    { path: "/loans-and-advances", icon: <FiCreditCard className="w-6 h-6" />, label: "Loans & Advances" },
-    { path: "/attendance", icon: <BsHandIndexThumb className="w-6 h-6" />, label: "Attendance" },
   ];
 
   const toggleExpand = (path) => {
@@ -193,8 +178,8 @@ const Sidebar = ({ onClose, isMobile, isCollapsed, onCollapse }) => {
                 className="w-full flex justify-center"
               >
                 <Link to="/dashboard">
-                  <img src={theme === 'dark' ? logo : logoLight} alt="CUPL | EMS" className="h-24 w-auto" />
-                  {/* <img src={CUPL} alt="CUPL | EMS" className={`h-14 w-auto rounded-xl p-2 ${
+                  {/* <img src={theme === 'dark' ? logoDark : logoLight} alt="Logo | AppName" className="h-24 w-auto" /> */}
+                  {/* <img src={logo} alt="Logo | AppName" className={`h-14 w-auto rounded-xl p-2 ${
                     theme === 'dark' 
                       ? 'bg-gradient-to-r from-purple-900/50 to-purple-600/50' 
                       : 'bg-gradient-to-r from-blue-600/50 to-blue-400/50'
